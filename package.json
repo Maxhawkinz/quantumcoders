@@ -1,0 +1,56 @@
+{
+  "name": "skill-share",
+  "version": "1.0.0",
+  "description": "NMIET College-Only Student Platform for Skill Sharing and Second-Hand Marketplace with Community Features and Gamification",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "export": "next build",
+    "deploy": "npm run export && if not exist docs mkdir docs && xcopy /E /I /Y out\\* docs\\",
+    "serve:static": "npx serve -s out -l 3001"
+  },
+  "dependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "firebase": "^10.7.0",
+    "framer-motion": "^10.16.0",
+    "lucide-react": "^0.294.0",
+    "tailwindcss": "^3.3.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "react-hook-form": "^7.47.0",
+    "react-hot-toast": "^2.4.1",
+    "date-fns": "^2.30.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.8.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.2.0",
+    "eslint": "^8.51.0",
+    "eslint-config-next": "^14.0.0"
+  },
+  "keywords": [
+    "skill-sharing",
+    "marketplace",
+    "college-platform",
+    "student-community",
+    "gamification",
+    "badges",
+    "discussions",
+    "nmiet"
+  ],
+  "author": "Maxhawkinz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Maxhawkinz/skill-share.git"
+  },
+  "homepage": "https://maxhawkinz.github.io/skill-share"
+}
