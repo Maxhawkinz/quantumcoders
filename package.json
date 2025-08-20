@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
-    "deploy": "npm run export && if not exist docs mkdir docs && xcopy /E /I /Y out\\* docs\\",
+    "deploy": "npm run export && if not exist docs mkdir docs && xcopy /E /I /Y out\\* docs\\ && type NUL > docs\\.nojekyll",
     "serve:static": "npx serve -s out -l 3001"
   },
   "dependencies": {
