@@ -1,4 +1,4 @@
-'use client'
+  'use client'
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -48,7 +48,7 @@ export default function SignupPage() {
                 <input
                   type="email"
                   className="input-field"
-                  placeholder="yourname@nmiet.edu"
+                  placeholder="yourname@nmiet.edu.in"
                   {...register('email', {
                     required: 'Email is required',
                     pattern: { value: /^[A-Za-z0-9._%+-]+@nmiet\.edu$/, message: 'Use your @nmiet.edu email' }
