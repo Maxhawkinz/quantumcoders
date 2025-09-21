@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -16,10 +17,14 @@ interface LoginForm {
 export default function LoginPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LoginForm>()
   const [showPassword, setShowPassword] = useState(false)
+  const { login, isLoading } = useAuth()
+  const router = useRouter()
 
   const onSubmit = async (data: LoginForm) => {
-    toast.success('Logged in successfully')
-    window.location.href = '/'
+    const success = await login(data.email, data.password)
+    if (success) {
+      router.push('/')
+    }
   }
 
   return (
@@ -35,12 +40,12 @@ export default function LoginPage() {
                 <input
                   type="email"
                   className="input-field"
-                  placeholder="yourname@nmiet.edu"
+                  placeholder="yourname@nmiet.edu.in"
                   {...register('email', {
                     required: 'Email is required',
                     pattern: {
-                      value: /^[A-Za-z0-9._%+-]+@nmiet\.edu$/,
-                      message: 'Use your @nmiet.edu email'
+                      value: /^[A-Za-z0-9._%+-]+@nmiet\.edu\.in$/,
+                      message: 'Use your @nmiet.edu.in email'
                     }
                   })}
                 />
@@ -59,7 +64,7 @@ export default function LoginPage() {
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-sm text-gray-600 mt-1">{showPassword ? 'Hide' : 'Show'} password</button>
               </div>
 
-              <button type="submit" disabled={isSubmitting} className="btn-primary w-full">{isSubmitting ? 'Logging in...' : 'Login'}</button>
+              <button type="submit" disabled={isSubmitting || isLoading} className="btn-primary w-full">{isSubmitting || isLoading ? 'Logging in...' : 'Login'}</button>
             </form>
             <p className="text-center text-sm text-gray-600 mt-4">Don't have an account? <Link href="/signup" className="text-primary-600 font-medium">Sign up</Link></p>
           </div>

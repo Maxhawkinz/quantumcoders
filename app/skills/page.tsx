@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import { 
   Search, 
   Filter, 
@@ -23,6 +24,7 @@ import SkillCard from '@/components/SkillCard'
 import CategoryFilter from '@/components/CategoryFilter'
 
 export default function SkillsPage() {
+  const router = useRouter()
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [sortBy, setSortBy] = useState('popularity')
@@ -169,7 +171,10 @@ export default function SkillsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex justify-center"
           >
-            <button className="btn-accent flex items-center gap-2">
+            <button 
+              onClick={() => router.push('/share-skill')}
+              className="btn-accent flex items-center gap-2"
+            >
               <Plus className="w-5 h-5" />
               Share Your Skill
             </button>

@@ -3,11 +3,9 @@ const nextConfig = {
 	images: {
 		domains: ['firebasestorage.googleapis.com'],
 	},
-	// For GitHub Pages deployment
-	basePath: process.env.NODE_ENV === 'production' ? '/skill-share' : '',
-	assetPrefix: process.env.NODE_ENV === 'production' ? '/skill-share' : '',
-	// Enable static export for GitHub Pages
-	output: 'export',
+	// For Vercel deployment (supports API routes)
+	// Remove static export for Vercel
+	// output: 'export', // Commented out for Vercel
 	trailingSlash: true,
 }
 

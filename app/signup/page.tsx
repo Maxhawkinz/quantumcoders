@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import { useAuth } from '@/contexts/AuthContext'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -13,15 +14,52 @@ interface SignupForm {
   email: string
   password: string
   confirmPassword: string
+  studentId: string
+  department: string
+  academicYear: string
+  phoneNumber?: string
 }
 
 export default function SignupPage() {
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<SignupForm>()
   const [showPassword, setShowPassword] = useState(false)
+  const { register: registerUser, isLoading } = useAuth()
+  const router = useRouter()
 
-  const onSubmit = async (_data: SignupForm) => {
-    toast.success('Account created. Welcome to Skill Share!')
-    window.location.href = '/'
+  const departments = [
+    'Computer Engineering',
+    'Information Technology',
+    'Electronics & Telecommunication',
+    'Mechanical Engineering',
+    'Civil Engineering',
+    'Chemical Engineering',
+    'Electrical Engineering',
+    'Other'
+  ]
+
+  const academicYears = [
+    'First Year',
+    'Second Year',
+    'Third Year',
+    'Fourth Year',
+    'Post Graduate',
+    'PhD'
+  ]
+
+  const onSubmit = async (data: SignupForm) => {
+    const success = await registerUser({
+      fullName: data.name,
+      email: data.email,
+      password: data.password,
+      studentId: data.studentId,
+      department: data.department,
+      academicYear: data.academicYear,
+      phoneNumber: data.phoneNumber
+    })
+    
+    if (success) {
+      router.push('/login')
+    }
   }
 
   return (
@@ -48,10 +86,10 @@ export default function SignupPage() {
                 <input
                   type="email"
                   className="input-field"
-                  placeholder="yourname@nmiet.edu"
+                  placeholder="yourname@nmiet.edu.in"
                   {...register('email', {
                     required: 'Email is required',
-                    pattern: { value: /^[A-Za-z0-9._%+-]+@nmiet\.edu$/, message: 'Use your @nmiet.edu email' }
+                    pattern: { value: /^[A-Za-z0-9._%+-]+@nmiet\.edu\.in$/, message: 'Use your @nmiet.edu.in email' }
                   })}
                 />
                 {errors.email && <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>}
@@ -80,7 +118,56 @@ export default function SignupPage() {
                 <button type="button" onClick={() => setShowPassword(!showPassword)} className="text-sm text-gray-600 mt-1">{showPassword ? 'Hide' : 'Show'} passwords</button>
               </div>
 
-              <button type="submit" disabled={isSubmitting} className="btn-primary w-full">{isSubmitting ? 'Creating...' : 'Create Account'}</button>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Student ID</label>
+                <input
+                  type="text"
+                  className="input-field"
+                  placeholder="NM2024001"
+                  {...register('studentId', { required: 'Student ID is required' })}
+                />
+                {errors.studentId && <p className="text-sm text-red-600 mt-1">{errors.studentId.message}</p>}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Department</label>
+                <select
+                  className="input-field"
+                  {...register('department', { required: 'Department is required' })}
+                >
+                  <option value="">Select your department</option>
+                  {departments.map((dept) => (
+                    <option key={dept} value={dept}>{dept}</option>
+                  ))}
+                </select>
+                {errors.department && <p className="text-sm text-red-600 mt-1">{errors.department.message}</p>}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Academic Year</label>
+                <select
+                  className="input-field"
+                  {...register('academicYear', { required: 'Academic year is required' })}
+                >
+                  <option value="">Select your academic year</option>
+                  {academicYears.map((year) => (
+                    <option key={year} value={year}>{year}</option>
+                  ))}
+                </select>
+                {errors.academicYear && <p className="text-sm text-red-600 mt-1">{errors.academicYear.message}</p>}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+                <input
+                  type="tel"
+                  className="input-field"
+                  placeholder="+91 9876543210"
+                  {...register('phoneNumber')}
+                />
+              </div>
+
+              <button type="submit" disabled={isSubmitting || isLoading} className="btn-primary w-full">{isSubmitting || isLoading ? 'Creating...' : 'Create Account'}</button>
             </form>
             <p className="text-center text-sm text-gray-600 mt-4">Already have an account? <Link href="/login" className="text-primary-600 font-medium">Log in</Link></p>
           </div>

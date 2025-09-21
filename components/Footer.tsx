@@ -5,7 +5,6 @@ import {
   Instagram, 
   Linkedin, 
   Mail, 
-  Phone,
   MapPin,
   Heart
 } from 'lucide-react'
@@ -127,11 +126,9 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-3 text-gray-300">
                 <Mail className="w-5 h-5 text-primary-400" />
-                <span className="text-sm">support@skillshare.nmiet.edu</span>
-              </div>
-              <div className="flex items-center space-x-3 text-gray-300">
-                <Phone className="w-5 h-5 text-primary-400" />
-                <span className="text-sm">+91 20 1234 5678</span>
+                <a href="mailto:ajaythakare500@gmail.com" className="text-sm hover:text-white transition-colors duration-200">
+                  ajaythakare500@gmail.com
+                </a>
               </div>
             </div>
           </div>

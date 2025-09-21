@@ -18,9 +18,19 @@ interface SellItemForm {
 export default function SellItemPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<SellItemForm>()
 
-  const onSubmit = async (_data: SellItemForm) => {
-    toast.success('Item listed for sale!')
-    window.location.href = '/marketplace'
+  const onSubmit = async (data: SellItemForm) => {
+    try {
+      const res = await fetch('/api/items', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      if (!res.ok) throw new Error('Failed to list item')
+      toast.success('Item listed!')
+      window.location.href = '/marketplace'
+    } catch (e: any) {
+      toast.error(e.message || 'Something went wrong')
+    }
   }
 
   return (

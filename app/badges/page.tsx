@@ -24,19 +24,22 @@ export default function BadgesPage() {
 
   const categories = [
     { id: 'all', name: 'All Badges', icon: <Award className="w-5 h-5" /> },
-    { id: 'learning', name: 'Learning', icon: <BookOpen className="w-5 h-5" /> },
-    { id: 'teaching', name: 'Teaching', icon: <Users className="w-5 h-5" /> },
-    { id: 'trading', name: 'Trading', icon: <ShoppingBag className="w-5 h-5" /> },
-    { id: 'community', name: 'Community', icon: <MessageCircle className="w-5 h-5" /> },
+    { id: 'courses', name: 'Course & Learning', icon: <BookOpen className="w-5 h-5" /> },
+    { id: 'quizzes', name: 'Quizzes & Challenges', icon: <Target className="w-5 h-5" /> },
+    { id: 'community', name: 'Community & Engagement', icon: <MessageCircle className="w-5 h-5" /> },
+    { id: 'projects', name: 'Projects & Hands-On', icon: <Users className="w-5 h-5" /> },
+    { id: 'consistency', name: 'Consistency & Habits', icon: <TrendingUp className="w-5 h-5" /> },
+    { id: 'special', name: 'Special Achievements', icon: <Crown className="w-5 h-5" /> },
   ]
 
   const badges = [
+    // Course & Learning Milestones
     {
       id: 1,
-      name: 'First Steps',
-      description: 'Complete your first skill lesson',
-      category: 'learning',
-      icon: '🎯',
+      name: 'Rising Star',
+      description: 'Complete your first course',
+      category: 'courses',
+      icon: '⭐',
       rarity: 'common',
       earned: true,
       progress: 100,
@@ -44,102 +47,332 @@ export default function BadgesPage() {
     },
     {
       id: 2,
-      name: 'Knowledge Seeker',
-      description: 'Complete 10 different skill lessons',
-      category: 'learning',
-      icon: '📚',
-      rarity: 'rare',
+      name: 'Skill Seeker',
+      description: 'Complete 3 courses',
+      category: 'courses',
+      icon: '🔍',
+      rarity: 'common',
       earned: true,
       progress: 100,
-      date: '2024-02-20'
+      date: '2024-02-01'
     },
     {
       id: 3,
-      name: 'Skill Master',
-      description: 'Complete 50 skill lessons',
-      category: 'learning',
-      icon: '👑',
-      rarity: 'epic',
+      name: 'Knowledge Guru',
+      description: 'Complete 5 courses',
+      category: 'courses',
+      icon: '🧠',
+      rarity: 'rare',
       earned: false,
-      progress: 68,
+      progress: 60,
       date: null
     },
     {
       id: 4,
-      name: 'Mentor',
-      description: 'Teach your first skill to another student',
-      category: 'teaching',
-      icon: '🎓',
-      rarity: 'rare',
-      earned: true,
-      progress: 100,
-      date: '2024-01-30'
-    },
-    {
-      id: 5,
-      name: 'Expert Teacher',
-      description: 'Teach 20 students successfully',
-      category: 'teaching',
-      icon: '🏆',
+      name: 'Mastermind',
+      description: 'Complete 10 courses',
+      category: 'courses',
+      icon: '🎯',
       rarity: 'epic',
       earned: false,
-      progress: 45,
+      progress: 30,
       date: null
     },
     {
+      id: 5,
+      name: 'Fast Learner',
+      description: 'Finish a course in under a week',
+      category: 'courses',
+      icon: '⚡',
+      rarity: 'rare',
+      earned: true,
+      progress: 100,
+      date: '2024-01-20'
+    },
+    {
       id: 6,
-      name: 'Marketplace Newbie',
-      description: 'Make your first sale or purchase',
-      category: 'trading',
-      icon: '💰',
+      name: 'Explorer',
+      description: 'Take a course in a new category',
+      category: 'courses',
+      icon: '🗺️',
+      rarity: 'common',
+      earned: false,
+      progress: 0,
+      date: null
+    },
+
+    // Quizzes & Challenges
+    {
+      id: 7,
+      name: 'Quiz Whiz',
+      description: 'Score 90%+ in 3 quizzes',
+      category: 'quizzes',
+      icon: '🧩',
+      rarity: 'rare',
+      earned: false,
+      progress: 67,
+      date: null
+    },
+    {
+      id: 8,
+      name: 'Challenge Champion',
+      description: 'Complete all course challenges',
+      category: 'quizzes',
+      icon: '🏆',
+      rarity: 'epic',
+      earned: false,
+      progress: 25,
+      date: null
+    },
+    {
+      id: 9,
+      name: 'Perfectionist',
+      description: 'Score 100% on a quiz',
+      category: 'quizzes',
+      icon: '💯',
+      rarity: 'rare',
+      earned: true,
+      progress: 100,
+      date: '2024-02-10'
+    },
+    {
+      id: 10,
+      name: 'Consistent Challenger',
+      description: 'Attempt quizzes every day for a week',
+      category: 'quizzes',
+      icon: '📅',
+      rarity: 'common',
+      earned: false,
+      progress: 43,
+      date: null
+    },
+
+    // Community & Engagement
+    {
+      id: 11,
+      name: 'Community Helper',
+      description: 'Post 5 helpful comments',
+      category: 'community',
+      icon: '🤝',
+      rarity: 'common',
+      earned: true,
+      progress: 100,
+      date: '2024-01-25'
+    },
+    {
+      id: 12,
+      name: 'Discussion Leader',
+      description: 'Start 3 discussions',
+      category: 'community',
+      icon: '💬',
+      rarity: 'rare',
+      earned: false,
+      progress: 67,
+      date: null
+    },
+    {
+      id: 13,
+      name: 'Peer Mentor',
+      description: 'Help 10 classmates',
+      category: 'community',
+      icon: '👥',
+      rarity: 'epic',
+      earned: false,
+      progress: 40,
+      date: null
+    },
+    {
+      id: 14,
+      name: 'Forum Star',
+      description: 'Get 10 likes on comments',
+      category: 'community',
+      icon: '⭐',
+      rarity: 'common',
+      earned: false,
+      progress: 70,
+      date: null
+    },
+    {
+      id: 15,
+      name: 'Social Sharer',
+      description: 'Share a course with friends',
+      category: 'community',
+      icon: '📤',
       rarity: 'common',
       earned: true,
       progress: 100,
       date: '2024-02-05'
     },
+
+    // Projects & Hands-On Learning
     {
-      id: 7,
-      name: 'Trusted Trader',
-      description: 'Complete 25 successful transactions',
-      category: 'trading',
-      icon: '🤝',
-      rarity: 'rare',
-      earned: false,
-      progress: 16,
-      date: null
-    },
-    {
-      id: 8,
-      name: 'Community Builder',
-      description: 'Start 10 meaningful discussions',
-      category: 'community',
-      icon: '🏗️',
-      rarity: 'epic',
-      earned: false,
-      progress: 7,
-      date: null
-    },
-    {
-      id: 9,
-      name: 'Helpful Hand',
-      description: 'Receive 50 helpful votes on your posts',
-      category: 'community',
-      icon: '🤲',
-      rarity: 'rare',
-      earned: false,
-      progress: 32,
-      date: null
-    },
-    {
-      id: 10,
-      name: 'Early Adopter',
-      description: 'Join the platform in the first month',
-      category: 'all',
+      id: 16,
+      name: 'Project Pro',
+      description: 'Submit your first project',
+      category: 'projects',
       icon: '🚀',
-      rarity: 'legendary',
+      rarity: 'common',
       earned: true,
       progress: 100,
-      date: '2024-01-01'
+      date: '2024-01-30'
+    },
+    {
+      id: 17,
+      name: 'Portfolio Builder',
+      description: 'Complete 3 projects',
+      category: 'projects',
+      icon: '📁',
+      rarity: 'rare',
+      earned: false,
+      progress: 67,
+      date: null
+    },
+    {
+      id: 18,
+      name: 'Innovator',
+      description: 'Complete a project outside your comfort zone',
+      category: 'projects',
+      icon: '💡',
+      rarity: 'epic',
+      earned: false,
+      progress: 0,
+      date: null
+    },
+    {
+      id: 19,
+      name: 'Collaboration King',
+      description: 'Join a group project',
+      category: 'projects',
+      icon: '👑',
+      rarity: 'rare',
+      earned: false,
+      progress: 0,
+      date: null
+    },
+    {
+      id: 20,
+      name: 'Hackathon Hero',
+      description: 'Participate in a hackathon',
+      category: 'projects',
+      icon: '⚔️',
+      rarity: 'epic',
+      earned: false,
+      progress: 0,
+      date: null
+    },
+
+    // Consistency & Habit Building
+    {
+      id: 21,
+      name: 'Consistency King',
+      description: 'Learn 7 days in a row',
+      category: 'consistency',
+      icon: '👑',
+      rarity: 'rare',
+      earned: false,
+      progress: 57,
+      date: null
+    },
+    {
+      id: 22,
+      name: 'Streak Master',
+      description: '30-day learning streak',
+      category: 'consistency',
+      icon: '🔥',
+      rarity: 'epic',
+      earned: false,
+      progress: 20,
+      date: null
+    },
+    {
+      id: 23,
+      name: 'Early Bird',
+      description: 'Log in before 8 AM for 5 days',
+      category: 'consistency',
+      icon: '🐦',
+      rarity: 'common',
+      earned: false,
+      progress: 60,
+      date: null
+    },
+    {
+      id: 24,
+      name: 'Night Owl',
+      description: 'Log in after 11 PM for 5 days',
+      category: 'consistency',
+      icon: '🦉',
+      rarity: 'common',
+      earned: true,
+      progress: 100,
+      date: '2024-02-15'
+    },
+
+    // Special Achievements & Fun
+    {
+      id: 25,
+      name: 'Skill Master',
+      description: 'Complete 5 courses in a category',
+      category: 'special',
+      icon: '🎓',
+      rarity: 'epic',
+      earned: false,
+      progress: 40,
+      date: null
+    },
+    {
+      id: 26,
+      name: 'Trendsetter',
+      description: 'Take the newest course within 24 hours of release',
+      category: 'special',
+      icon: '📈',
+      rarity: 'rare',
+      earned: false,
+      progress: 0,
+      date: null
+    },
+    {
+      id: 27,
+      name: 'Explorer Extraordinaire',
+      description: 'Explore 5 different categories',
+      category: 'special',
+      icon: '🗺️',
+      rarity: 'epic',
+      earned: false,
+      progress: 60,
+      date: null
+    },
+    {
+      id: 28,
+      name: 'Rising Influencer',
+      description: 'Get 100 followers',
+      category: 'special',
+      icon: '📢',
+      rarity: 'epic',
+      earned: false,
+      progress: 15,
+      date: null
+    },
+    {
+      id: 29,
+      name: 'Beta Tester',
+      description: 'Try a beta feature',
+      category: 'special',
+      icon: '🧪',
+      rarity: 'rare',
+      earned: false,
+      progress: 0,
+      date: null
+    },
+    {
+      id: 30,
+      name: 'Legendary Learner',
+      description: 'Unlock all badges',
+      category: 'special',
+      icon: '🏆',
+      rarity: 'legendary',
+      earned: false,
+      progress: 17,
+      date: null
     }
   ]
 

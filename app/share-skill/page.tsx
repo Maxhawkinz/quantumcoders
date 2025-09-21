@@ -3,7 +3,9 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
+import { useAuth } from '@/contexts/AuthContext'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
@@ -21,12 +23,43 @@ interface ShareSkillForm {
 export default function ShareSkillPage() {
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<ShareSkillForm>()
   const [submitting, setSubmitting] = useState(false)
+  const { user, token } = useAuth()
+  const router = useRouter()
 
-  const onSubmit = async (_data: ShareSkillForm) => {
-    setSubmitting(true)
-    toast.success('Skill submitted! We\'ll list it shortly.')
-    setSubmitting(false)
-    window.location.href = '/skills'
+  // Redirect if not logged in
+  if (!user) {
+    router.push('/login')
+    return null
+  }
+
+  const onSubmit = async (data: ShareSkillForm) => {
+    try {
+      setSubmitting(true)
+      const res = await fetch('/api/skills', {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          ...data,
+          instructorId: user._id
+        })
+      })
+      
+      const result = await res.json()
+      
+      if (!res.ok) {
+        throw new Error(result.error || 'Failed to submit skill')
+      }
+      
+      toast.success('Skill submitted successfully! It will be reviewed before going live.')
+      router.push('/skills')
+    } catch (e: any) {
+      toast.error(e.message || 'Something went wrong')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (

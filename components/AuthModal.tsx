@@ -35,12 +35,12 @@ export default function AuthModal({ isOpen, onClose, mode }: AuthModalProps) {
   const password = watch('password')
 
   const validateNMIETEmail = (email: string) => {
-    return email.endsWith('@nmiet.edu')
+    return email.endsWith('@nmiet.edu.in')
   }
 
   const onSubmit = async (data: FormData) => {
     if (!validateNMIETEmail(data.email)) {
-      toast.error('Please use your NMIET email address (@nmiet.edu)')
+      toast.error('Please use your NMIET email address (@nmiet.edu.in)')
       return
     }
 
@@ -152,12 +152,12 @@ export default function AuthModal({ isOpen, onClose, mode }: AuthModalProps) {
                     {...register('email', { 
                       required: 'Email is required',
                       pattern: {
-                        value: /@nmiet\.edu$/,
+                        value: /@nmiet\.edu\.in$/,
                         message: 'Please use your NMIET email address'
                       }
                     })}
                     className="input-field pl-10"
-                    placeholder="yourname@nmiet.edu"
+                    placeholder="yourname@nmiet.edu.in"
                   />
                   {watch('email') && validateNMIETEmail(watch('email')) && (
                     <CheckCircle className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-green-500" />
