@@ -1,7 +1,5 @@
 #!/bin/bash
 
-# 🚀 Skill Share - GitHub Pages Deployment Script
-# By Maxhawkinz
 
 echo "🚀 Starting Skill Share deployment to GitHub Pages..."
 
