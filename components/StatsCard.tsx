@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-
 interface StatsCardProps {
   number: string
   label: string
