@@ -12,7 +12,6 @@ import {
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
-
   const footerLinks = {
     platform: [
       { name: 'Skills', href: '/skills' },
