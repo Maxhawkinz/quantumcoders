@@ -1,5 +1,4 @@
 import { ReactNode } from 'react'
-
 interface FeatureCardProps {
   icon: ReactNode
   title: string
